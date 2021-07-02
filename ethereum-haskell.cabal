@@ -27,6 +27,8 @@ library
   exposed-modules:
       Account
       Lib
+      Signature
+      State
       Transaction
   other-modules:
       Paths_ethereum_haskell
