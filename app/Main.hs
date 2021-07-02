@@ -1,13 +1,13 @@
--- module Main where
+module Main where
 
--- import Lib
+import Account as Account
 import Data.Map (Map)
 import qualified Data.Map as Map
 import Data.Maybe
+import Transaction
 
-main :: IO ()
 main = do
-  let myState = Map.fromList [("stasbar", withBalance 5), ("gbaranski", withBalance 4)]
+  let myState = Map.fromList [("stasbar", Account.withBalance 5), ("gbaranski", Account.withBalance 4)]
       transactions =
         [ Transaction {from = "stasbar", to = "gbaranski", value = 6},
           Transaction {from = "stasbar", to = "gbaranski", value = 4},
@@ -18,37 +18,12 @@ main = do
   let finalState = stateTransition myState transactions
   print finalState
 
-data Transaction = Transaction
-  { from :: String,
-    to :: String,
-    value :: Integer
-  }
-  deriving (Show)
-
-data Account = Account
-  { nonce :: Integer,
-    balance :: Integer,
-    storageRoot :: Integer,
-    codeHash :: Integer
-  }
-  deriving (Show)
-
-withBalance balance = Account {nonce = 0, balance = balance, storageRoot = 0, codeHash = 0}
-
 type State = Map String Account
-
-updateBalance :: (Integer -> Integer) -> Account -> Account
-updateBalance adjuster acc = do
-  Account
-    { nonce = nonce acc,
-      balance = adjuster $ balance acc,
-      storageRoot = storageRoot acc,
-      codeHash = codeHash acc
-    }
 
 updateLedger :: State -> Transaction -> State
 updateLedger state tx = do
-  Map.adjust (updateBalance (+ amount)) payee $ Map.adjust (updateBalance (subtract amount)) payer state
+  Map.adjust (Account.updateBalance (+ amount)) payee $
+    Map.adjust (Account.updateBalance (subtract amount)) payer state
   where
     payer = from tx
     payee = to tx

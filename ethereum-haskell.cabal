@@ -25,7 +25,9 @@ source-repository head
 
 library
   exposed-modules:
+      Account
       Lib
+      Transaction
   other-modules:
       Paths_ethereum_haskell
   hs-source-dirs:
