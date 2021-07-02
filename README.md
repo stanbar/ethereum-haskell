@@ -1,1 +1,1 @@
-# ethereum-haskell
+# Ethereum-Haskell
