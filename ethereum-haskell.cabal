@@ -36,6 +36,7 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , bytestring
     , containers
   default-language: Haskell2010
 
@@ -48,6 +49,7 @@ executable ethereum-haskell-exe
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , bytestring
     , containers
     , ethereum-haskell
   default-language: Haskell2010
@@ -62,6 +64,7 @@ test-suite ethereum-haskell-test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , bytestring
     , containers
     , ethereum-haskell
   default-language: Haskell2010
