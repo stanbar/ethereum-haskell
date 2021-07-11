@@ -5,7 +5,7 @@ import Signature
 
 data Transaction = Transaction
   { nonce :: Integer
-  , getPrice :: Integer
+  , gasPrice :: Integer
   , gasLimit :: Integer
   , from :: String
   , to :: String
